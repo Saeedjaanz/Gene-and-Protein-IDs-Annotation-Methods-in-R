@@ -53,3 +53,53 @@ This method uses the `EnsDb.Hsapiens.v86` package, a preloaded annotation databa
   if (!require("BiocManager")) install.packages("BiocManager")
   BiocManager::install(c("org.Hs.eg.db", "biomaRt", "EnsDb.Hsapiens.v86", "AnnotationDbi", "clusterProfiler"))
   install.packages(c("readxl", "openxlsx"))
+
+---
+
+### **2. R Script Files**
+
+#### **method1_orgHs.R**
+```r
+# Method 1: Annotation using org.Hs.eg.db
+library(org.Hs.eg.db)
+library(clusterProfiler)
+library(readxl)
+library(openxlsx)
+
+# Load data
+data <- read_excel("example_data.xlsx")
+genes <- data$Gene_Symbols
+
+# Annotation
+annotated_ids1 <- bitr(genes, fromType = "SYMBOL", toType = "ENSEMBL", OrgDb = org.Hs.eg.db)
+openxlsx::write.xlsx(annotated_ids1, "annotated_ids1.xlsx", colNames = TRUE)
+
+# Method 2: Annotation using biomaRt
+library(biomaRt)
+library(openxlsx)
+
+# Load data
+data <- read_excel("example_data.xlsx")
+genes <- data$Gene_Symbols
+
+# Connect to Ensembl
+ensembl_conn <- useMart("ensembl", dataset = "hsapiens_gene_ensembl")
+annotated_ids2 <- getBM(attributes = c("uniprot_gn_symbol", "ensembl_gene_id"),
+                        filters = "uniprot_gn_symbol",
+                        values = genes,
+                        mart = ensembl_conn)
+openxlsx::write.xlsx(annotated_ids2, "annotated_ids2.xlsx", colNames = TRUE)
+
+# Method 3: Annotation using EnsDb.Hsapiens.v86
+library(EnsDb.Hsapiens.v86)
+library(AnnotationDbi)
+library(openxlsx)
+
+# Load data
+data <- read_excel("example_data.xlsx")
+genes <- data$Gene_Symbols
+
+# Annotation
+annotated_ids3 <- mapIds(EnsDb.Hsapiens.v86, keys = genes, keytype = "SYMBOL", column = "GENEID")
+annotated_ids3 <- data.frame(ENSEMBL_IDs = annotated_ids3)
+openxlsx::write.xlsx(annotated_ids3, "annotated_ids3.xlsx", colNames = TRUE)
