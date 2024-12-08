@@ -1,7 +1,53 @@
 # Gene and Protein IDs Annotation Methods in R
 
-This repository contains methods to annotate gene and protein IDs in R using various libraries and packages. 
-Follow the instructions provided to set up your environment and annotate gene or protein IDs efficiently.
+This repository provides R code for annotating gene and protein IDs using different methods. The methods include the use of the `org.Hs.eg.db` package, `biomaRt` package, and `EnsDb.Hsapiens.v86` database.
+
+## Methods Overview
+
+### Method 1: Annotation Using `org.Hs.eg.db`
+This method uses the `org.Hs.eg.db` package for gene annotation.
+
+### Method 2: Annotation Using `biomaRt`
+This method utilizes the `biomaRt` package to annotate gene IDs from Ensembl.
+
+### Method 3: Annotation Using `EnsDb.Hsapiens.v86`
+This method makes use of the `EnsDb.Hsapiens.v86` package for gene ID annotation.
+
+## View Detailed Code and Console Output
+
+For the full R code, including console output and generated results, please visit the following [RPubs publication](https://rpubs.com/Saeedjaanz/genes_or_proteins_ids_annotation_methods_in_R).
+
+---
+
+## Files in the Repository
+
+- `method1_code.R`: Code for Method 1 (using `org.Hs.eg.db`)
+- `method2_code.R`: Code for Method 2 (using `biomaRt`)
+- `method3_code.R`: Code for Method 3 (using `EnsDb.Hsapiens.v86`)
+- `example_data.xlsx`: Example dataset for testing the methods
+
+---
+
+## How to Run the Code
+
+1. Install the required R packages:
+    - `org.Hs.eg.db`
+    - `biomaRt`
+    - `EnsDb.Hsapiens.v86`
+    - `openxlsx`
+    - `clusterProfiler`
+    - `readxl`
+
+2. Run the code in the corresponding `.R` files for each method.
+
+3. View the annotated gene IDs in the output Excel files.
+
+---
+
+## License
+
+This project is free for everyone to use.
+
 
 ---
 
@@ -103,3 +149,16 @@ genes <- data$Gene_Symbols
 annotated_ids3 <- mapIds(EnsDb.Hsapiens.v86, keys = genes, keytype = "SYMBOL", column = "GENEID")
 annotated_ids3 <- data.frame(ENSEMBL_IDs = annotated_ids3)
 openxlsx::write.xlsx(annotated_ids3, "annotated_ids3.xlsx", colNames = TRUE)
+
+---
+
+## Conclusion
+
+Thank you for exploring the Gene and Protein ID Annotation methods. The methods provided here demonstrate different approaches for annotating gene identifiers using popular R packages. For more details, including the full code and console output, visit the [RPubs publication](https://rpubs.com/Saeedjaanz/genes_or_proteins_ids_annotation_methods_in_R).
+
+Feel free to clone this repository, experiment with the code, and adapt it for your own research needs. If you encounter any issues or have suggestions for improvement, please open an issue or submit a pull request.
+
+Happy coding and research!
+
+---
+
