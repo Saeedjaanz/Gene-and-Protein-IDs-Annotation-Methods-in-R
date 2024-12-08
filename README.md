@@ -15,7 +15,7 @@ This method makes use of the `EnsDb.Hsapiens.v86` package for gene ID annotation
 
 ## View Detailed Code and Console Output
 
-For the full R code, including console output and generated results, please visit the following [RPubs publication](https://rpubs.com/Saeedjaanz/genes_or_proteins_ids_annotation_methods_in_R).
+For the full R code, including console output and generated results, please visit the following [RP ubs publication](https://rpubs.com/Saeedjaanz/genes_or_proteins_ids_annotation_methods_in_R).
 
 ---
 
@@ -149,16 +149,12 @@ genes <- data$Gene_Symbols
 annotated_ids3 <- mapIds(EnsDb.Hsapiens.v86, keys = genes, keytype = "SYMBOL", column = "GENEID")
 annotated_ids3 <- data.frame(ENSEMBL_IDs = annotated_ids3)
 openxlsx::write.xlsx(annotated_ids3, "annotated_ids3.xlsx", colNames = TRUE)
-
+```
 ---
-
 ## Conclusion
 
-Thank you for exploring the Gene and Protein ID Annotation methods. The methods provided here demonstrate different approaches for annotating gene identifiers using popular R packages. For more details, including the full code and console output, visit the [RPubs publication](https://rpubs.com/Saeedjaanz/genes_or_proteins_ids_annotation_methods_in_R).
+Thank you for exploring the Gene and Protein ID Annotation methods. The methods provided here demonstrate different approaches for annotating gene identifiers using popular R packages. For more details, including the full code and console output, visit the RPubs publication.
 
 Feel free to clone this repository, experiment with the code, and adapt it for your own research needs. If you encounter any issues or have suggestions for improvement, please open an issue or submit a pull request.
 
 Happy coding and research!
-
----
-
